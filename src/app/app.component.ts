@@ -18,7 +18,9 @@ export class AppComponent {
 
   isDesktop: Signal<boolean> = isDesktop();
 
-  isLandscape: Signal<boolean> = matchMediaSignal('(orientation: landscape)');
+  isLandscape: Signal<boolean> = matchMediaSignal('(orientation: landscape)', {
+    debugName: 'ngx-mq: orientation landscape',
+  });
 
   constructor(@Inject(MQ_BREAKPOINTS) public breakpoints: MqBreakpoints) {}
 }
