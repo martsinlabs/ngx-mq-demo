@@ -1,35 +1,97 @@
-<header>
-  <img src="logo.svg" alt="ngx-mq-logo" />
+<main class="page">
+  <header class="hero">
+    <div class="hero__brand">
+      <img class="hero__logo" src="logo.svg" alt="ngx-mq logo" />
+      <span class="hero__name">NGX-MQ</span>
+    </div>
 
-  <h1>Playground</h1>
-</header>
+    <h1 class="hero__tagline">Signals-native media queries</h1>
 
-<mat-list role="list">
-  <mat-list-item>
-    <b>
-      Is Mobile: <span class="mq-result">{{ isMobile() }}</span>
-    </b>
-    - Viewport width < {{ breakpoints["md"] }}px
-  </mat-list-item>
+    <div class="hero__readout">
+      <span class="hero__viewport">
+        viewport: {{ width() }} &times; {{ height() }}
+      </span>
+      <span class="chip chip--device">{{ device() }}</span>
+    </div>
 
-  <mat-list-item>
-    <b>
-      Is Tablet: <span class="mq-result">{{ isTablet() }}</span>
-    </b>
-    - Viewport width between {{ breakpoints["md"] }}px and
-    {{ breakpoints["lg"] }}px
-  </mat-list-item>
+    <p class="hero__hint">Resize the window or open the device toolbar ↺</p>
+  </header>
 
-  <mat-list-item>
-    <b>
-      Is Desktop: <span class="mq-result">{{ isDesktop() }}</span>
-    </b>
-    - Viewport width >= {{ breakpoints["lg"] }}px
-  </mat-list-item>
+  <section class="section">
+    <h2 class="section__title">Breakpoints</h2>
+    <div class="grid">
+      @for (card of breakpointCards; track card.code) {
+        <article class="card">
+          <div class="card__head">
+            <span class="card__name">{{ card.name }}</span>
+            <span class="chip" [class.chip--on]="card.on()">{{
+              card.on()
+            }}</span>
+          </div>
+          <code class="card__code">{{ card.code }}</code>
+          <p class="card__hint">{{ card.hint }}</p>
+        </article>
+      }
+    </div>
+  </section>
 
-  <mat-list-item>
-    <b>
-      Is Landscape: <span class="mq-result">{{ isLandscape() }}</span>
-    </b>
-  </mat-list-item>
-</mat-list>
+  <!-- C. MEDIA FEATURES -->
+  <section class="section">
+    <h2 class="section__title">
+      Media features <span class="badge">new in 3.0</span>
+    </h2>
+    <div class="grid">
+      @for (card of featureCards; track card.code) {
+        <article class="card">
+          <div class="card__head card__head--stacked">
+            <code class="card__code">{{ card.code }}</code>
+            <span class="chip" [class.chip--on]="card.on()">{{
+              card.on()
+            }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section__title">Composition</h2>
+    <p class="section__sub">Derived from the chips above, zero extra wiring.</p>
+    <div class="grid grid--wide">
+      @for (card of compositionCards; track card.code) {
+        <article class="card card--accent">
+          <div class="card__head card__head--stacked">
+            <code class="card__code">{{ card.code }}</code>
+            <span class="chip" [class.chip--on]="card.on()">{{
+              card.on()
+            }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer__ssr">SSR-safe via <code>provideSsrValue</code></span>
+    <nav class="footer__links">
+      <a
+        href="https://github.com/martsinlabs/ngx-mq#readme"
+        target="_blank"
+        rel="noreferrer"
+        >docs</a
+      >
+      <a
+        href="https://www.npmjs.com/package/ngx-mq"
+        target="_blank"
+        rel="noreferrer"
+        >npm</a
+      >
+      <a
+        href="https://github.com/martsinlabs/ngx-mq"
+        target="_blank"
+        rel="noreferrer"
+        >github</a
+      >
+    </nav>
+  </footer>
+</main>

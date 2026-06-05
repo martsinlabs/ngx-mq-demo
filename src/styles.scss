@@ -1,37 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global tokens + base. Custom dark UI (no Material). */
 
-@use "@angular/material" as mat;
+:root {
+  --bg: #0b0b0f;
+  --card: #16161d;
+  --border: #262633;
+  --border-hover: #383850;
 
-@include mat.elevation-classes();
-@include mat.app-background();
+  --text: #e8e8ef;
+  --text-dim: #9a9ab0;
 
-$theme: mat.define-theme(
-  (
-    color: (
-      primary: mat.$violet-palette,
-    ),
-    typography: (
-      plain-family: (
-        "Inter",
-        sans-serif,
-      ),
-    ),
-    density: (
-      scale: -1,
-    ),
-  )
-);
+  --accent: #4f46e5;
+  --accent-soft: rgba(79, 70, 229, 0.16);
+  --accent-glow: rgba(79, 70, 229, 0.35);
+
+  --brand-from: #cd0ff4;
+  --brand-to: #f21111;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
 
 html,
 body {
   margin: 0;
-  height: 100%;
-
-  @include mat.all-component-themes($theme);
+  min-height: 100%;
 }
 
 body {
-  padding: 24px;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--text);
 }

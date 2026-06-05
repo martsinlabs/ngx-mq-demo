@@ -1,10 +1,13 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideTailwindBreakpoints } from 'ngx-mq';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ApplicationConfig, provideZonelessChangeDetection } from '@angular/core';
+import { provideSsrValue, provideTailwindBreakpoints } from 'ngx-mq';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideTailwindBreakpoints(), provideAnimationsAsync(), provideAnimationsAsync(),
+    // Zoneless change detection: ngx-mq signals drive every update, no Zone.js.
+    provideZonelessChangeDetection(),
+    // Registers Tailwind's breakpoint scale (sm/md/lg/xl/2xl) behind MQ_BREAKPOINTS.
+    provideTailwindBreakpoints(),
+    // SSR-safe defaults: queries report `true` before `matchMedia` is available.
+    provideSsrValue(true),
   ],
 };

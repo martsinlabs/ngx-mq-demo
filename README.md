@@ -1,27 +1,27 @@
-# NgxMqDemo
+# NGX-MQ Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Interactive playground for [ngx-mq](https://github.com/martsinlabs/ngx-mq) **v3**,
+signals-native media queries for Angular.
 
-## Development server
+Built with Angular 20 (standalone, **zoneless**): no Zone.js and no UI framework,
+just custom CSS. The whole page reacts to viewport and device changes live, with
+zero subscription code.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What it shows
 
-## Code scaffolding
+- **Breakpoints**: `up` / `down` / `between` over the Tailwind scale.
+- **Media features** (new in 3.0): `orientation`, `colorScheme`, `reducedMotion`,
+  `hover`, `anyHover`, `pointer`, `anyPointer`, `colorGamut`, `displayMode`.
+- **Composition**: `and` / `or` / `not` combine query signals into derived
+  conditions with no extra wiring.
+- **SSR-safe** defaults via `provideSsrValue`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Develop
 
-## Build
+```bash
+npm start      # ng serve, http://localhost:4200/
+npm run build  # production build into dist/
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Try it: resize the window or open the browser device toolbar, every chip updates
+in real time.
