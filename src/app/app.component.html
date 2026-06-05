@@ -3,6 +3,7 @@
     <div class="hero__brand">
       <img class="hero__logo" src="logo.svg" alt="ngx-mq logo" />
       <span class="hero__name">NGX-MQ</span>
+      <span class="hero__version">v3.0</span>
     </div>
 
     <h1 class="hero__tagline">Signals-native media queries</h1>
@@ -28,7 +29,9 @@
               card.on()
             }}</span>
           </div>
-          <code class="card__code">{{ card.code }}</code>
+          <code class="card__code">@for (tok of card.tokens; track $index) {<span
+              class="tok tok--{{ tok.k }}"
+              >{{ tok.t }}</span>}</code>
           <p class="card__hint">{{ card.hint }}</p>
         </article>
       }
@@ -44,7 +47,9 @@
       @for (card of featureCards; track card.code) {
         <article class="card">
           <div class="card__head card__head--stacked">
-            <code class="card__code">{{ card.code }}</code>
+            <code class="card__code">@for (tok of card.tokens; track $index) {<span
+              class="tok tok--{{ tok.k }}"
+              >{{ tok.t }}</span>}</code>
             <span class="chip" [class.chip--on]="card.on()">{{
               card.on()
             }}</span>
@@ -61,7 +66,9 @@
       @for (card of compositionCards; track card.code) {
         <article class="card card--accent">
           <div class="card__head card__head--stacked">
-            <code class="card__code">{{ card.code }}</code>
+            <code class="card__code">@for (tok of card.tokens; track $index) {<span
+              class="tok tok--{{ tok.k }}"
+              >{{ tok.t }}</span>}</code>
             <span class="chip" [class.chip--on]="card.on()">{{
               card.on()
             }}</span>

@@ -10,6 +10,7 @@
   --text-dim: #9a9ab0;
 
   --accent: #4f46e5;
+  --accent-text: #a5b4fc;
   --accent-soft: rgba(79, 70, 229, 0.16);
   --accent-glow: rgba(79, 70, 229, 0.35);
 
@@ -33,7 +34,14 @@ body {
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(
+      1100px 560px at 50% -10%,
+      rgba(124, 58, 237, 0.07),
+      transparent 60%
+    ),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

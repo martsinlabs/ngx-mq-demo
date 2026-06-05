@@ -5,17 +5,17 @@
 .page {
   max-width: 980px;
   margin: 0 auto;
-  padding: 48px 24px 64px;
+  padding: 64px 24px 80px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 56px;
 }
 
 /* --- A. Hero --------------------------------------------------------------- */
 .hero {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .hero__brand {
@@ -25,8 +25,8 @@
 }
 
 .hero__logo {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
 }
 
 .hero__name {
@@ -35,12 +35,23 @@
   font-size: 1.05rem;
 }
 
+.hero__version {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
 .hero__tagline {
-  margin: 0;
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin: 4px 0 0;
+  font-size: clamp(2rem, 5.5vw, 3rem);
   font-weight: 800;
-  line-height: 1.1;
-  background: linear-gradient(92deg, var(--brand-from), var(--brand-to));
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  background: linear-gradient(96deg, var(--brand-from), var(--brand-to));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -51,13 +62,14 @@
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .hero__viewport {
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .hero__hint {
@@ -70,14 +82,14 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .section__title {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-dim);
   display: flex;
@@ -86,21 +98,21 @@
 }
 
 .section__sub {
-  margin: -8px 0 0;
+  margin: -10px 0 0;
   color: var(--text-dim);
   font-size: 0.9rem;
 }
 
 .badge {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
   text-transform: none;
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--accent-soft);
   border: 1px solid var(--accent-glow);
   border-radius: 999px;
-  padding: 2px 8px;
+  padding: 2px 9px;
 }
 
 /* --- Grid + cards --------------------------------------------------------- */
@@ -121,19 +133,19 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
   transition:
     border-color 0.15s ease,
-    transform 0.15s ease;
+    background 0.15s ease;
 }
 
 .card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-1px);
 }
 
-.card--accent:hover {
-  border-color: var(--accent-glow);
+/* Active cards (a live `true` chip inside) get a clearer accent border. */
+.card:has(.chip--on) {
+  border-color: var(--accent);
 }
 
 .card__head {
@@ -151,13 +163,13 @@
 .card__name {
   font-weight: 600;
   font-size: 0.95rem;
+  letter-spacing: -0.01em;
 }
 
 .card__code {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--text);
-  word-break: break-word;
+  line-height: 1.5;
 }
 
 .card__hint {
@@ -167,12 +179,28 @@
   font-family: var(--font-mono);
 }
 
+/* Syntax highlighting — muted, low-saturation */
+.tok--fn {
+  color: #d2d4e0;
+}
+
+.tok--str {
+  color: #8089a3;
+}
+
+.tok--punct {
+  color: #5c5c70;
+}
+
 /* --- Chips ---------------------------------------------------------------- */
 .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
-  padding: 3px 10px;
+  padding: 3px 11px;
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--text-dim);
@@ -180,22 +208,53 @@
   transition:
     color 0.15s ease,
     background 0.15s ease,
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
+    border-color 0.15s ease;
 }
 
 .chip--on {
   color: #fff;
   background: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.chip--on::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .chip--device {
   background: var(--accent-soft);
   border-color: var(--accent-glow);
-  color: var(--accent);
+  color: var(--accent-text);
   letter-spacing: 0.06em;
+}
+
+.chip--device::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip--on::before {
+    animation: none;
+  }
 }
 
 /* --- E. Footer ------------------------------------------------------------ */
@@ -205,7 +264,7 @@
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
-  padding-top: 24px;
+  padding-top: 28px;
   border-top: 1px solid var(--border);
   font-size: 0.85rem;
   color: var(--text-dim);
